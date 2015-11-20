@@ -28,4 +28,4 @@ Input file: plain-text log file with 20.000.000 lines (1.24GB)
 | Parallel BlockingQueue	| number of threads: 4  | 22s  |
 | Parallel BlockingQueue	| number of threads: 8  | 26s  |
 
-Read about the performance test here: <>
+Read about the performance test here: <http://www.bernhardwenzel.com/blog/2015/11/20/java-versus-go-a-performance-comparision/>
