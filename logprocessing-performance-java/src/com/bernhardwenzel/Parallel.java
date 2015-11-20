@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 class Parallel
 {
     public static final Pattern pattern = Pattern.compile("^[^#]*#[15][15]1110+$");
-    static final int numberOfWorkers = 2;
+    static final int numberOfWorkers = 4;
     static ExecutorService executor = Executors.newFixedThreadPool(numberOfWorkers);
     static final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<String>(512);
 
@@ -43,7 +43,7 @@ class Parallel
             {
                 queue.put(line);
             }
-            executor.shutdownNow();
+            executor.shutdown();
         }
         catch (Exception ex)
         {
