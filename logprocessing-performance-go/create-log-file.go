@@ -5,17 +5,19 @@ import (
 	"os"
 	"time"
 	"fmt"
-	"github.com/bernhardwenzel/logprocessing-performance-go/logfile"
 )
 
 func init() {
 	log.SetOutput(os.Stdout)
 }
 
-func main() {
-	log.Println("Creating log file: " + logfile.LogFile)
+const numberOfLines = 20000000
+const logFile = "log-sample.txt"
 
-	fo, err := os.Create(logfile.LogFile)
+func main() {
+	log.Println("Creating log file: " + logFile)
+
+	fo, err := os.Create(logFile)
 	if err != nil {
 		panic(err)
 	}
@@ -25,7 +27,7 @@ func main() {
 		}
 	}()
 	now := time.Now()
-	for i:=0; i < logfile.LogFileNumberOfLines; i++  {
+	for i:=0; i < numberOfLines; i++  {
 		date := now.Add(time.Duration(i) * time.Second)
 		_, err = fo.WriteString(fmt.Sprintf("%v -- %v\n", date, fmt.Sprintf("log entry #%v", i)))
 		if err != nil {
@@ -35,5 +37,5 @@ func main() {
 			log.Printf("... created %v lines", i)
 		}
 	}
-	log.Printf("Done writing %v lines", logfile.LogFileNumberOfLines)
+	log.Printf("Done writing %v lines", logFile)
 }
